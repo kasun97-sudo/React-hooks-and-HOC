@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import {useState , useEffect} from "react";
 import './App.css';
 
+
+
 function App() {
+
+  const [name , setName] = useState(() => "tharindu");
+  var number = 10;
+
+  const nameChange = () => {
+    setName("tharindu");
+    console.log("clicked");
+  }
+
+  useEffect(() => {
+    setName("kasun");
+    console.log("in");
+  } , [number]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>{name}</p>
+      <button onClick={nameChange}>click here</button>
     </div>
   );
 }
