@@ -5,24 +5,20 @@ import './App.css';
 
 function App() {
 
-  const decrement = () => {
-    setState(prevState => {
-      return {
-        ...prevState,
-        count : prevState.count -1
-      }
-    })
+  const [windowWidth , setWindowWidth] = useState(window.innerWidth);
+
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
   }
 
-  const [state , setState] = useState({count : 4 , theme : "blue"});
+  useEffect(() => {
+    window.addEventListener('resize' , handleResize);
+  },[]);
 
 
   return (
     <div className="App">
-      <button>+</button>
-      <p>{state.count}</p>
-      <p>{state.theme}</p>
-      <button onClick={decrement}>-</button>
+      {windowWidth}
     </div>
   );
 }
