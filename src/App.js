@@ -6,19 +6,22 @@ import './App.css';
 function App() {
 
   const [name , setName] = useState('');
-  const inputRef = useRef();
+  const prevName = useRef();
 
 
   const focus = () => {
-    inputRef.current.focus();
+    prevName.current = name;
   }
 
 
   return (
     <div className="App">
-      <input ref={inputRef} value={name} onChange={e => setName(e.target.value)}/>
+      <input value={name} onChange={e => setName(e.target.value)}/>
       <button onClick={focus}>Focus</button>
       <p>{name}</p>
+      {
+        prevName.current ? <>{prevName.current}</> : <></>
+      }
     </div>
   );
 }
