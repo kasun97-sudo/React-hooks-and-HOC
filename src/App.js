@@ -1,24 +1,24 @@
-import {useState , useEffect} from "react";
+import {useState , useEffect , useRef} from "react";
 import './App.css';
 
 
 
 function App() {
 
-  const [windowWidth , setWindowWidth] = useState(window.innerWidth);
+  const [name , setName] = useState('');
+  const inputRef = useRef();
 
-  const handleResize = () => {
-    setWindowWidth(window.innerWidth);
+
+  const focus = () => {
+    inputRef.current.focus();
   }
-
-  useEffect(() => {
-    window.addEventListener('resize' , handleResize);
-  },[]);
 
 
   return (
     <div className="App">
-      {windowWidth}
+      <input ref={inputRef} value={name} onChange={e => setName(e.target.value)}/>
+      <button onClick={focus}>Focus</button>
+      <p>{name}</p>
     </div>
   );
 }
