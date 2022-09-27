@@ -5,23 +5,24 @@ import './App.css';
 
 function App() {
 
-  const [name , setName] = useState(() => "tharindu");
-  var number = 10;
-
-  const nameChange = () => {
-    setName("tharindu");
-    console.log("clicked");
+  const decrement = () => {
+    setState(prevState => {
+      return {
+        ...prevState,
+        count : prevState.count -1
+      }
+    })
   }
 
-  useEffect(() => {
-    setName("kasun");
-    console.log("in");
-  } , [number]);
+  const [state , setState] = useState({count : 4 , theme : "blue"});
+
 
   return (
     <div className="App">
-      <p>{name}</p>
-      <button onClick={nameChange}>click here</button>
+      <button>+</button>
+      <p>{state.count}</p>
+      <p>{state.theme}</p>
+      <button onClick={decrement}>-</button>
     </div>
   );
 }
