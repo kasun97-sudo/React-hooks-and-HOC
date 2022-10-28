@@ -1,10 +1,18 @@
-import {useState , useEffect , useRef , useMemo} from "react";
+import {useState , useEffect , useRef , useMemo , useContext} from "react";
 import HigherOrderComponent from './HigherOrderComponent';
+import FunctionContext from '../Context/FunctionContext';
 function Component1(props){
+
+    const func = useContext(FunctionContext);
+
+    const showR = () => {
+        console.log(func.count);
+    }
+
     return (
         <div>
             <h1>Hello from component 1</h1>
-            <button onClick={props.func}>Click Component 1</button>
+            <button onClick={func.increment}>Click Component +</button>
         </div>
     )
 }
